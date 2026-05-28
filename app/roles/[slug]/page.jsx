@@ -10,7 +10,7 @@ import {
   Route,
   TriangleAlert
 } from "lucide-react";
-import { roles } from "@/lib/mockTrialContent";
+import { examples, roles } from "@/lib/mockTrialContent";
 
 export function generateStaticParams() {
   return roles.map((role) => ({ slug: role.slug }));
@@ -30,6 +30,7 @@ export default async function RolePage({ params }) {
   const { slug } = await params;
   const role = roles.find((item) => item.slug === slug);
   if (!role) notFound();
+  const relatedExamples = examples.filter((example) => example.category === role.name).slice(0, 3);
 
   return (
     <main>
@@ -40,6 +41,7 @@ export default async function RolePage({ params }) {
         </Link>
         <nav className="top-nav" aria-label="역할 탐색">
           <Link href="/#roles">역할별</Link>
+          <Link href="/examples">예시자료</Link>
           <a href="/활동지/index.html">활동지</a>
         </nav>
       </header>
@@ -61,6 +63,7 @@ export default async function RolePage({ params }) {
           <a href="#steps">준비 순서</a>
           <a href="#forms">작성 자료</a>
           <a href="#speech">말하기 예시</a>
+          {relatedExamples.length > 0 ? <a href="#examples">관련 예시</a> : null}
           <a href="#mistakes">흔한 실수</a>
         </aside>
 
@@ -127,6 +130,24 @@ export default async function RolePage({ params }) {
               ))}
             </div>
           </section>
+
+          {relatedExamples.length > 0 ? (
+            <section id="examples" className="contentPanel">
+              <div className="panelTitle">
+                <FileText aria-hidden size={22} />
+                <h2>관련 예시자료</h2>
+              </div>
+              <div className="exampleGrid compact">
+                {relatedExamples.map((example) => (
+                  <Link href={example.href} className="exampleCard" key={example.slug}>
+                    <span>{example.category}</span>
+                    <h3>{example.title}</h3>
+                    <p>{example.summary}</p>
+                  </Link>
+                ))}
+              </div>
+            </section>
+          ) : null}
 
           <section id="mistakes" className="contentPanel">
             <div className="panelTitle">

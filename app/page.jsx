@@ -7,11 +7,13 @@ import {
   Gavel,
   GraduationCap,
   Landmark,
+  Library,
   MessageSquareQuote,
   ShieldCheck,
   UsersRound
 } from "lucide-react";
-import { roles, sequence, quickLinks } from "@/lib/mockTrialContent";
+import SearchPanel from "@/app/components/SearchPanel";
+import { examples, roles, searchItems, sequence, quickLinks } from "@/lib/mockTrialContent";
 
 const roleIcons = {
   lawmaker: Landmark,
@@ -32,6 +34,8 @@ export default function HomePage() {
         </Link>
         <nav className="top-nav" aria-label="주요 메뉴">
           <a href="#roles">역할별</a>
+          <a href="#examples">예시자료</a>
+          <a href="#search">검색</a>
           <a href="#flow">수업 흐름</a>
           <a href="#resources">자료</a>
         </nav>
@@ -49,6 +53,9 @@ export default function HomePage() {
             <a className="primaryButton" href="#roles">
               역할 고르기 <ArrowRight aria-hidden size={18} />
             </a>
+            <Link className="ghostButton" href="/examples">
+              예시자료 보기 <Library aria-hidden size={18} />
+            </Link>
             <a className="ghostButton" href="/활동지/index.html">
               활동지 열기 <ClipboardList aria-hidden size={18} />
             </a>
@@ -70,6 +77,8 @@ export default function HomePage() {
           </ul>
         </div>
       </section>
+
+      <SearchPanel items={searchItems} />
 
       <section id="roles" className="section">
         <div className="sectionHeader">
@@ -94,6 +103,33 @@ export default function HomePage() {
               </Link>
             );
           })}
+        </div>
+      </section>
+
+      <section id="examples" className="section band">
+        <div className="sectionHeader">
+          <p className="kicker">Examples</p>
+          <h2>예시자료실</h2>
+          <p>법안, 출처 표기, 주장 글쓰기, 공소장, 변론요지서, 판결문처럼 학생들이 참고할 완성 예시입니다.</p>
+        </div>
+        <div className="exampleGrid">
+          {examples.slice(0, 8).map((example) => (
+            <Link href={example.href} className="exampleCard" key={example.slug}>
+              <span>{example.category}</span>
+              <h3>{example.title}</h3>
+              <p>{example.summary}</p>
+              <div className="tagRow">
+                {example.tags.slice(0, 3).map((tag) => (
+                  <em key={tag}>{tag}</em>
+                ))}
+              </div>
+            </Link>
+          ))}
+        </div>
+        <div className="sectionAction">
+          <Link className="primaryButton" href="/examples">
+            예시자료 전체 보기 <ArrowRight aria-hidden size={18} />
+          </Link>
         </div>
       </section>
 

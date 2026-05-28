@@ -298,6 +298,8 @@ h3 {
 
 .roleCard,
 .resourceCard,
+.exampleCard,
+.resultCard,
 .timelineItem,
 .miniGrid article,
 .formGrid article,
@@ -392,6 +394,192 @@ h3 {
 .resourceCard svg {
   flex: 0 0 auto;
   color: var(--blue);
+}
+
+.searchSection {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 24px 0 44px;
+}
+
+.searchShell {
+  display: grid;
+  gap: 18px;
+  padding: clamp(22px, 4vw, 34px);
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(255, 250, 240, 0.97), rgba(248, 232, 183, 0.72)),
+    #fffaf0;
+  box-shadow: 7px 7px 0 var(--ink);
+}
+
+.searchBox {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 58px;
+  padding: 0 16px;
+  border: 2px solid rgba(23, 39, 43, 0.28);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.searchBox svg {
+  flex: 0 0 auto;
+  color: var(--green);
+}
+
+.searchBox input {
+  width: 100%;
+  min-width: 0;
+  color: var(--ink);
+  font: inherit;
+  font-size: 1.06rem;
+  font-weight: 800;
+  border: 0;
+  outline: 0;
+  background: transparent;
+}
+
+.searchResults {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.resultCard {
+  display: grid;
+  gap: 7px;
+  padding: 16px;
+  text-decoration: none;
+}
+
+.resultType {
+  width: fit-content;
+  padding: 3px 8px;
+  color: #fffdf7;
+  font-size: 0.78rem;
+  font-weight: 950;
+  border-radius: 8px;
+  background: var(--blue);
+}
+
+.resultCard strong,
+.resultLink {
+  font-weight: 950;
+}
+
+.resultCard p {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-weight: 650;
+}
+
+.resultLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--green);
+}
+
+.emptyResult {
+  grid-column: 1 / -1;
+  padding: 18px;
+  border: 1px dashed rgba(23, 39, 43, 0.35);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.exampleGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.exampleGrid.full {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.exampleGrid.compact {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.exampleCard {
+  display: grid;
+  gap: 10px;
+  min-height: 220px;
+  padding: 20px;
+  text-decoration: none;
+  box-shadow: 0 8px 22px rgba(23, 39, 43, 0.08);
+}
+
+.exampleCard > svg {
+  color: var(--coral);
+}
+
+.exampleCard span {
+  width: fit-content;
+  padding: 4px 9px;
+  color: #183026;
+  font-size: 0.82rem;
+  font-weight: 950;
+  border-radius: 8px;
+  background: #dff0e2;
+}
+
+.exampleCard p {
+  color: var(--muted);
+  font-weight: 650;
+}
+
+.tagRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.tagRow.wide {
+  margin-top: 18px;
+}
+
+.tagRow em {
+  padding: 4px 8px;
+  color: #314246;
+  font-size: 0.78rem;
+  font-style: normal;
+  font-weight: 850;
+  border: 1px solid rgba(23, 39, 43, 0.13);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.sectionAction {
+  margin-top: 18px;
+}
+
+.exampleDetail {
+  display: grid;
+  gap: 18px;
+  width: min(920px, calc(100% - 40px));
+  margin: 0 auto;
+  padding-bottom: 70px;
+}
+
+.exampleText {
+  display: grid;
+  gap: 12px;
+}
+
+.exampleText p {
+  margin-bottom: 0;
+  padding: 14px 16px;
+  color: #2d3e42;
+  font-weight: 700;
+  border-left: 5px solid var(--green);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.75);
 }
 
 .roleHero {
@@ -601,6 +789,10 @@ blockquote {
   .miniGrid,
   .formGrid,
   .checkGrid,
+  .searchResults,
+  .exampleGrid,
+  .exampleGrid.full,
+  .exampleGrid.compact,
   .resourceGrid {
     grid-template-columns: 1fr;
   }
@@ -613,6 +805,8 @@ blockquote {
 @media (max-width: 540px) {
   .hero,
   .section,
+  .searchSection,
+  .exampleDetail,
   .roleHero,
   .roleLayout {
     width: calc(100% - 28px);
